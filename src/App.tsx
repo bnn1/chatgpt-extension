@@ -3,7 +3,6 @@ import "./App.css";
 
 function App() {
   const [bearerToken, setBearerToken] = useState<string>();
-  // const [requests, setRequests] = useState<Set<string>>(new Set());
   const [conversations, setConversations] = useState<any[]>([]);
 
   const handleMessage = useCallback(
@@ -76,7 +75,7 @@ function App() {
         input.onclick = (e) => e.stopPropagation();
         element.prepend(input);
       });
-      console.log("ELEMENTS:", elements);
+
       const nav = document.querySelector("nav > div.mb-1.flex.flex-row.gap-2");
       if (nav) {
         const button = document.createElement("button");
@@ -112,7 +111,6 @@ function App() {
     }
   }, [conversations, bearerToken]);
 
-  console.log("CONVERSATIONS:", conversations);
   return null;
 }
 

@@ -30,13 +30,10 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
             "https://chat.openai.com/backend-api/conversations"
           )
         ) {
-          console.log("DETAILS URL:", details.url);
-          chrome.tabs
-            .sendMessage(tabId, {
-              type: "request",
-              data: details.url,
-            })
-            .then(console.log);
+          chrome.tabs.sendMessage(tabId, {
+            type: "request",
+            data: details.url,
+          });
 
           return undefined;
         }
