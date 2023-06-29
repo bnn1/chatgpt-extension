@@ -25,3 +25,4 @@ It intercepts your request to openai backend and extracts the Bearer token. Then
 
 1. Checkboxes only exist on the first 28 conversations, if you need to keep the first 28 conversations and delete later conversations, sorry, you're out of luck
 2. When entering a conversation from the main url (i.e. chat.openai.com -> chat.openai.com/c/conversation_id) the checkboxes disappear. Reload the page for them to appear
+3. Sometimes the checkboxes don't appear. Refresh the page until they do
