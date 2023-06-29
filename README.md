@@ -2,7 +2,7 @@
 
 Adds an ability for bulk deletes. 
 
-The extension is buggy and don't have many features but it probably will not be updated in the near future.
+The extension is buggy and don't have many features but I'm working on it.
 
 You are free to do whatever you want with this extension: fork, edit, sell, whatever. You can even say "man this extension is shit", I won't mind.
 
