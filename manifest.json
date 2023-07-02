@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT Extension",
+  "version": "0.0.1",
+  "description": "Improve your ChatGPT experience with this extension! Bulk exports, bulk deletes, save prompts and more!",
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "declarativeContent",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": ["https://chat.openai.com/*"],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "src/background/background.ts",
+    "type": "module",
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*"],
+      "js": ["src/contentScript/main.tsx"],
+      "run_at": "document_end"
+    }
+  ]
+}
