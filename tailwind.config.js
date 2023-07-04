@@ -7,7 +7,11 @@ import containerQueriesPlugin from "@tailwindcss/container-queries";
 export default {
   content: ["src/**/*.{ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        112: "28rem",
+      },
+    },
   },
   plugins: [daisyUi, typographyPlugin, formsPlugin, containerQueriesPlugin],
 };
