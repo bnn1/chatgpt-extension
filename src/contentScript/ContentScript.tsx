@@ -1,6 +1,6 @@
 import useExtensionState from "../hooks/useExtensionState";
 
-function App() {
+function ContentScript() {
   const extensionState = useExtensionState();
   return (
     <>
@@ -9,4 +9,4 @@ function App() {
   );
 }
 
-export default App;
+export default ContentScript;

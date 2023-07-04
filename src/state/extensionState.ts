@@ -3,7 +3,6 @@ import { proxy } from "valtio";
 export enum Actions {
   GET_STATE = "get-state",
   SET_STATE = "set-state",
-  UPDATED = "updated",
 }
 export type Action = `${Actions}`;
 

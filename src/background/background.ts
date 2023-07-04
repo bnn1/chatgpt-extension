@@ -13,13 +13,7 @@ interface MessageWithPayload {
 type Message = MessageWithoutPayload | MessageWithPayload;
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.local.get(state, (result) => {
-    if (result) {
-      Object.assign(state, result);
-    } else {
-      chrome.storage.local.set(state);
-    }
-  });
+  chrome.storage.local.set(state);
 
   chrome.runtime.onMessage.addListener((message: Message, _, sendResponse) => {
     if (message.type === Actions.GET_STATE) {

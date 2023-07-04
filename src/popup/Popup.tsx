@@ -1,12 +1,11 @@
 import useExtensionState from "../hooks/useExtensionState";
 import { updateState } from "../state/extensionState";
 
-function App() {
+function Popup() {
   const extensionState = useExtensionState();
 
   return (
     <>
-      <div>sup</div>
       <button
         onClick={() => {
           updateState({
@@ -20,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default Popup;
