@@ -13,6 +13,33 @@ interface MessageWithPayload {
 type Message = MessageWithoutPayload | MessageWithPayload;
 
 chrome.runtime.onInstalled.addListener(() => {
+  enableActionsOnOpenAI();
+  manageLocalStorage();
+});
+
+function enableActionsOnOpenAI() {
+  // Page actions are disabled by default and enabled on select tabs
+  chrome.action.disable();
+
+  // Clear all rules to ensure only our expected rules are set
+  chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
+    // Declare a rule to enable the action on example.com pages
+    const exampleRule = {
+      conditions: [
+        new chrome.declarativeContent.PageStateMatcher({
+          pageUrl: { hostSuffix: "chat.openai.com" },
+        }),
+      ],
+      actions: [new chrome.declarativeContent.ShowAction()],
+    };
+
+    // Finally, apply our new array of rules
+    const rules = [exampleRule];
+    chrome.declarativeContent.onPageChanged.addRules(rules);
+  });
+}
+
+function manageLocalStorage() {
   chrome.storage.local.set(state);
 
   chrome.runtime.onMessage.addListener((message: Message, _, sendResponse) => {
@@ -25,4 +52,4 @@ chrome.runtime.onInstalled.addListener(() => {
       chrome.storage.local.set(state);
     }
   });
-});
+}
