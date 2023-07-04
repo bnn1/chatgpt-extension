@@ -3,6 +3,7 @@ import { FC } from "react";
 const GithubIcon: FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 98" {...props}>
+      <title>Github</title>
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
