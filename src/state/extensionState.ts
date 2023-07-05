@@ -1,6 +1,7 @@
 import { proxy } from "valtio";
 
 export enum Actions {
+  GET_BEARER = "get-bearer",
   GET_STATE = "get-state",
   SET_STATE = "set-state",
 }

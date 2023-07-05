@@ -1,7 +1,7 @@
 import { Actions, ExtensionState, state } from "../state/extensionState";
 
 interface MessageWithoutPayload {
-  type: Actions.GET_STATE;
+  type: Actions.GET_STATE | Actions.GET_BEARER;
   payload?: never;
 }
 
@@ -13,8 +13,10 @@ interface MessageWithPayload {
 type Message = MessageWithoutPayload | MessageWithPayload;
 
 chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.set(state);
+  getBearer();
   enableActionsOnOpenAI();
-  manageLocalStorage();
+  manageMessages();
 });
 
 function enableActionsOnOpenAI() {
@@ -39,9 +41,7 @@ function enableActionsOnOpenAI() {
   });
 }
 
-function manageLocalStorage() {
-  chrome.storage.local.set(state);
-
+function manageMessages() {
   chrome.runtime.onMessage.addListener((message: Message, _, sendResponse) => {
     if (message.type === Actions.GET_STATE) {
       sendResponse(state);
@@ -50,6 +50,42 @@ function manageLocalStorage() {
     if (message.type === Actions.SET_STATE) {
       Object.assign(state, message.payload);
       chrome.storage.local.set(state);
+
+      return undefined;
     }
+
+    if (message.type === Actions.GET_BEARER) {
+      chrome.storage.local.get("bearer", ({ bearer }) => {
+        sendResponse(bearer);
+      });
+    }
+
+    return true;
   });
+}
+
+async function getBearer() {
+  const { bearer } = await chrome.storage.local.get("bearer");
+
+  if (bearer) return;
+
+  chrome.webRequest.onBeforeSendHeaders.addListener(
+    (details) => {
+      const { requestHeaders } = details;
+
+      if (requestHeaders) {
+        const bearer = requestHeaders.find(
+          (header) => header.name === "Authorization"
+        )?.value;
+
+        if (bearer) {
+          chrome.storage.local.set({ bearer });
+        }
+      }
+    },
+    {
+      urls: ["https://chat.openai.com/*"],
+    },
+    ["requestHeaders"]
+  );
 }
