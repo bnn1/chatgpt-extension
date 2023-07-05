@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import useMutationObserver from "./useMutationObserver";
 
 function createRenderer(ids: string[]) {
   return function prependCheckbox(node: HTMLElement, index: number) {
@@ -9,73 +10,40 @@ function createRenderer(ids: string[]) {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.className = "checkbox";
-    checkbox.dataset.conversationid = ids[index];
+    checkbox.dataset.conversationId = ids[index];
     checkbox.onclick = (e) => e.stopPropagation();
 
     node.prepend(checkbox);
   };
 }
-function redrawUi() {
-  const links = Array.from(
-    document.querySelectorAll(
-      "nav > div > div > div > span > div > ol > li > a"
-    )
-  ) as HTMLAnchorElement[];
-
-  const ids = links.map((_, idx) => idx.toString());
+function drawUi(nodes: HTMLElement[], ids: string[]) {
   const prependCheckbox = createRenderer(ids);
 
-  links.forEach(prependCheckbox);
+  nodes.forEach(prependCheckbox);
 }
 
-const useDrawBulkDeleteUI = (enabled: boolean) => {
-  // redraw checkboxes when new links are added
+function removeUi(nodes: HTMLElement[]) {
+  nodes.forEach((node) => {
+    const checkbox = node.querySelector(".checkbox");
+
+    if (checkbox) checkbox.remove();
+  });
+}
+
+const useDrawBulkDeleteUI = (enabled: boolean, ids: string[]) => {
+  const nodes = useMutationObserver(document.querySelector("nav")!, "li > a", {
+    subtree: true,
+    childList: true,
+  });
+
+  // draw checkboxes when enabled
   useEffect(() => {
     if (enabled) {
-      redrawUi();
-      const targetNode = document.body.querySelector("#__next") as HTMLElement;
-      const config = { childList: true, subtree: true };
-      const mutationObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          mutation.addedNodes.forEach((node) => {
-            // Check if the added node is an Element
-            if (
-              node.nodeType === Node.ELEMENT_NODE &&
-              node instanceof HTMLElement
-            ) {
-              // prepend your checkbox to this node
-              const anchors = Array.from(
-                node.querySelectorAll("li > a")
-              ) as HTMLAnchorElement[];
-
-              const ids = anchors.map((_, idx) => idx.toString());
-              const prependCheckbox = createRenderer(ids);
-              anchors.forEach(prependCheckbox);
-            }
-          });
-        });
-      });
-
-      mutationObserver.observe(targetNode, config);
-
-      return () => {
-        mutationObserver.disconnect();
-      };
+      drawUi(nodes, ids);
+    } else {
+      removeUi(nodes);
     }
-  }, [enabled]);
-
-  // remove checkboxes when disabled
-  useEffect(() => {
-    if (!enabled) {
-      const checkboxes = Array.from(
-        document.querySelectorAll("a > .checkbox")
-      ) as HTMLInputElement[];
-
-      checkboxes.forEach((checkbox) => {
-        checkbox.remove();
-      });
-    }
-  }, [enabled]);
+  }, [nodes, enabled, ids]);
 };
 
 export default useDrawBulkDeleteUI;
