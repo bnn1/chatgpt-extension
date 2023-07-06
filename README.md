@@ -85,8 +85,8 @@ This project is licensed under the MIT License. For more details, see the [LICEN
 
 ## User Data and Privacy
 
-The ChatGPT Extension operates with certain browser permissions to provide its functionalities. This includes access to secure cookies and utilization of local storage. While these permissions are necessary for the extension to function properly, we understand the importance of user privacy and data security.
+The ChatGPT Extension operates with certain browser permissions to provide its functionalities. This includes utilization of local storage and access to secure bearer token. While these permissions are necessary for the extension to function properly, we understand the importance of user privacy and data security.
 
 Please be aware that while the extension does have access to this data, it is used solely for the purpose of enhancing your experience on the ChatGPT website and is not shared, sold, or used for any other purposes. We are committed to maintaining the highest standards of privacy and security.
 
-However, as with any tool that has access to sensitive data, we encourage users to ensure their systems are secure and to use this extension responsibly. If you have any questions or concerns about how the ChatGPT Extension handles data, please feel free to reach out to us.
+However, as with any tool that has access to sensitive data, we encourage users to ensure their systems are secure and to use this extension responsibly. If you have any questions or concerns about how the ChatGPT Extension handles data, please feel free to [reach out](https://t.me/barysbarbarys) to us.
