@@ -30,7 +30,7 @@ const useMutationObserver = (
     mutationObserver.observe(target, options);
   }, [target, selector, options]);
 
-  return Array.from(new Set(nodes));
+  return [Array.from(new Set(nodes)), setNodes] as const;
 };
 
 export default useMutationObserver;
