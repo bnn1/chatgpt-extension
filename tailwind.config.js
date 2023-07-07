@@ -7,6 +7,9 @@ import containerQueriesPlugin from "@tailwindcss/container-queries";
 export default {
   content: ["src/**/*.{ts,tsx}"],
   theme: {
+    borderColor: {
+      brand: "#fff",
+    },
     extend: {
       width: {
         112: "28rem",
@@ -14,4 +17,7 @@ export default {
     },
   },
   plugins: [daisyUi, typographyPlugin, formsPlugin, containerQueriesPlugin],
+  daisyUi: {
+    themes: ["dark"],
+  },
 };

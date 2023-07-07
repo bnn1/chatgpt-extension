@@ -15,6 +15,7 @@ function patchDataId(
 
   nodes.forEach((node, index) => {
     const title = node.innerText;
+
     if (
       title !== conversations[index].title ||
       node.dataset[key] === conversations[index].id

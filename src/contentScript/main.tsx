@@ -5,6 +5,7 @@ import "../index.css";
 
 const root = document.createElement("div");
 root.id = "chatgpt-content-script-root";
+root.dataset.theme = "dark";
 
 document.body.appendChild(root);
 

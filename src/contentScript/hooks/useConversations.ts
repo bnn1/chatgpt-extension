@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Data, Item } from "../types";
-
-function sleep(time: number) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
+import sleep from "../../lib/utils/sleep";
 
 const useConversations = (token: string | null) => {
   const [conversations, setConversations] = useState<Item[]>([]);

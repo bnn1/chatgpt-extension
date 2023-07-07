@@ -1,14 +1,11 @@
 import { useEffect } from "react";
-import useMutationObserver from "./useMutationObserver";
-import { drawUi, removeUi } from "../utils/ui";
+import { drawCheckboxes, removeCheckboxes } from "../utils/ui";
 
-const useDrawBulkDeleteUI = (enabled: boolean) => {
-  const target = document.querySelector("nav") as HTMLElement;
-  const [nodes, setNodes] = useMutationObserver(target, "li > a", {
-    subtree: true,
-    childList: true,
-  });
-
+const useDrawBulkDeleteUI = (
+  enabled: boolean,
+  nodes: HTMLElement[],
+  setNodes: (nodes: HTMLElement[]) => void
+) => {
   // draw nodes when enabled mid browsing
   useEffect(() => {
     if (enabled && nodes.length === 0) {
@@ -19,7 +16,7 @@ const useDrawBulkDeleteUI = (enabled: boolean) => {
       setNodes(nodes);
 
       if (nodes.length > 0) {
-        drawUi(Array.from(nodes) as HTMLElement[]);
+        drawCheckboxes(Array.from(nodes) as HTMLElement[]);
       }
     }
   }, [enabled, setNodes, nodes.length]);
@@ -27,13 +24,11 @@ const useDrawBulkDeleteUI = (enabled: boolean) => {
   // draw checkboxes when enabled
   useEffect(() => {
     if (enabled && nodes.length > 0) {
-      drawUi(nodes);
+      drawCheckboxes(nodes);
     } else {
-      removeUi(nodes);
+      removeCheckboxes(nodes);
     }
   }, [nodes, enabled]);
-
-  return nodes;
 };
 
 export default useDrawBulkDeleteUI;
