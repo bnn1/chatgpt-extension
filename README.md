@@ -27,8 +27,8 @@ Future development is postponed due to more important projects on the list.
 ## Features
 
 - **Batch Chat Deletion**: No more one-by-one chat removals. With this feature, you can select and delete multiple chat threads simultaneously, making chat management a breeze.
-- **Conversation History Export**: Preserve your intellectual exchanges and creative ideas by exporting your chat history. This feature provides an easy way to keep a record of your conversations for future reference or analysis &mdash; planned.
-- **Prompt Bookmarks**: Save the prompts you find yourself using frequently. This feature allows you to bookmark and easily access your favorite or most used prompts, saving you time and enhancing your productivity &mdash; planned.
+- **Conversation History Export**: Preserve your intellectual exchanges and creative ideas by exporting your chat history. This feature provides an easy way to keep a record of your conversations for future reference or analysis &mdash; **postponed**.
+- **Prompt Bookmarks**: Save the prompts you find yourself using frequently. This feature allows you to bookmark and easily access your favorite or most used prompts, saving you time and enhancing your productivity &mdash; **postponed**.
 ---
 ## Getting Started  
 
