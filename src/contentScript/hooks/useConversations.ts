@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Data, Item } from "../types";
 import sleep from "../../lib/utils/sleep";
 
-const useConversations = (token: string | null) => {
+const useConversations = (
+  token: string | null
+): [Item[], React.Dispatch<React.SetStateAction<Item[]>>] => {
   const [conversations, setConversations] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const useConversations = (token: string | null) => {
     if (token) fetchConversations();
   }, [token]);
 
-  return conversations;
+  return [conversations, setConversations];
 };
 
 export default useConversations;

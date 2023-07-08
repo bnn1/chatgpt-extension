@@ -20,7 +20,7 @@ declare global {
 function ContentScript() {
   const extensionState = useExtensionState();
   const bearer = useCookie("__Secure-next-auth.session-token");
-  const conversations = useConversations(bearer);
+  const [conversations, setConversations] = useConversations(bearer);
   const checkboxTargetContainer = document.querySelector("nav") as HTMLElement;
   const [nodes, setNodes] = useMutationObserver(
     checkboxTargetContainer,
@@ -68,7 +68,34 @@ function ContentScript() {
       );
       await sleep(100);
     }
-    window.location.reload();
+
+    setNodes((nodes) =>
+      nodes.filter(
+        (node) =>
+          !conversationsToDelete.includes(node.dataset.conversationId as string)
+      )
+    );
+
+    nodes.forEach((node) => {
+      if (
+        conversationsToDelete.includes(node.dataset.conversationId as string)
+      ) {
+        node.remove();
+      }
+    });
+
+    setConversations((conversations) => {
+      return conversations.filter(
+        (conversation) =>
+          !conversationsToDelete.includes(conversation.id as string)
+      );
+    });
+
+    if (
+      conversationsToDelete.some((id) => window.location.pathname.includes(id))
+    ) {
+      window.location.reload();
+    }
   };
 
   return isBulkDeleteEnabled ? (
