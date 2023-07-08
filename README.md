@@ -2,17 +2,23 @@
 
 The ChatGPT Extension is a powerful enhancement tool for the ChatGPT website, designed to streamline and enrich your interactions with the platform. This Google Chrome extension, built with Vite and React, introduces a suite of new functionalities that allow for a more efficient and personalized user experience.
 
+## Warning
+The extension is experimental! The use of extension may result in data loss! Use at your own risk.
+Future development is postponed due to more important projects on the list.
+
 ---
 
 ## Table of Contents
 
 - [ChatGPT Extension](#chatgpt-extension)
+  - [Warning](#warning)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
   - [Loading the Extension in Chrome](#loading-the-extension-in-chrome)
+  - [Known Bugs](#known-bugs)
   - [Contributing](#contributing)
   - [License](#license)
   - [User Data and Privacy](#user-data-and-privacy)
@@ -21,8 +27,8 @@ The ChatGPT Extension is a powerful enhancement tool for the ChatGPT website, de
 ## Features
 
 - **Batch Chat Deletion**: No more one-by-one chat removals. With this feature, you can select and delete multiple chat threads simultaneously, making chat management a breeze.
-- **Conversation History Export**: Preserve your intellectual exchanges and creative ideas by exporting your chat history. This feature provides an easy way to keep a record of your conversations for future reference or analysis.
-- **Prompt Bookmarks**: Save the prompts you find yourself using frequently. This feature allows you to bookmark and easily access your favorite or most used prompts, saving you time and enhancing your productivity.
+- **Conversation History Export**: Preserve your intellectual exchanges and creative ideas by exporting your chat history. This feature provides an easy way to keep a record of your conversations for future reference or analysis &mdash; planned.
+- **Prompt Bookmarks**: Save the prompts you find yourself using frequently. This feature allows you to bookmark and easily access your favorite or most used prompts, saving you time and enhancing your productivity &mdash; planned.
 ---
 ## Getting Started  
 
@@ -70,6 +76,10 @@ yarn build
 
 2. **Load the Extension**: Open Google Chrome and go to `chrome://extensions/`. Enable Developer mode by clicking the toggle switch at the top right. Click the "Load unpacked" button and select the `dist` folder in your project directory.
 ---
+
+## Known Bugs
+
+1. Checkboxes disappear when changing url from `/` to `/c/conversationId`
 
 ## Contributing
 
