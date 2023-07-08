@@ -80,6 +80,7 @@ yarn build
 ## Known Bugs
 
 1. Checkboxes disappear when changing url from `/` to `/c/conversationId`
+2. Sometimes extension drops dead and doesn't react to button clicks. Reload the extension to fix.
 
 ## Contributing
 
