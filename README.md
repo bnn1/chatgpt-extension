@@ -4,7 +4,6 @@ The ChatGPT Extension is a powerful enhancement tool for the ChatGPT website, de
 
 ## Warning
 The extension is experimental! The use of extension may result in data loss! Use at your own risk.
-Future development is postponed due to more important projects on the list.
 
 ---
 
